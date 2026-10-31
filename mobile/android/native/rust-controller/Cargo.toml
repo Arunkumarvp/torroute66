@@ -1,0 +1,21 @@
+[package]
+name = "pqveil-controller"
+version = "0.1.0"
+edition = "2021"
+authors = ["PQVeil Team"]
+description = "PQVeil Mobile Security Controller & JNI Bridge"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+jni = { version = "0.21", default-features = false }
+tokio = { version = "1.38", default-features = false, features = ["rt-multi-thread", "sync", "time", "macros"] }
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+android_logger = "0.14"
+zeroize = { version = "1.8", features = ["derive"] }
+sha3 = "0.10"
+rand = "0.8"
+
