@@ -119,40 +119,6 @@ The PQVeil Mobile user interface is engineered in **Kotlin with Jetpack Compose*
   <img src="docs/images/pqveil_mobile_ui_mockup.png" alt="PQVeil Mobile UI Screen Suite: Dashboard, Security Settings, and Event Monitor" width="100%">
 </p>
 
-> *The three primary interfaces of PQVeil Mobile: (1) Main Dashboard with one-tap connection and hardware status; (2) Security & Hardware Isolation settings with seed-based enclave controls; (3) Live Real-Time Audit Telemetry terminal showing zero-leak fail-closed protection. (Also available as scalable vector [SVG format](docs/images/pqveil_mobile_ui_mockup.svg)).*
-
-```
-   SCREEN 1: MAIN DASHBOARD                 SCREEN 2: SECURITY SETTINGS             SCREEN 3: LIVE EVENT MONITOR
-┌────────────────────────────────┐       ┌────────────────────────────────┐       ┌────────────────────────────────┐
-│ 12:00 📶  🛡️ VPN  🔋 95%      │       │ 12:00 📶  🛡️ VPN  🔋 95%      │       │ 12:00 📶  🛡️ VPN  🔋 95%      │
-├────────────────────────────────┤       ├────────────────────────────────┤       ├────────────────────────────────┤
-│         PQVeil Mobile          │       │       Security & Keys          │       │     Security Event Monitor     │
-│  Quantum-Safe Onion Protection │       │   Hardware Isolation Settings  │       │    Real-Time Audit Telemetry   │
-│                                │       │                                │       │                                │
-│ ┌────────────────────────────┐ │       │ ┌────────────────────────────┐ │       │ ┌────────────────────────────┐ │
-│ │     ● TUNNEL ACTIVE        │ │       │ │ Active Hardware Backend    │ │       │ │[12:00:01] Tor bootstrap 100%││
-│ │                            │ │       │ │ (•) Android StrongBox TEE  │ │       │ │[12:00:02] Ephemeral X25519 OK││
-│ │ Gateway: pqveil....onion   │ │       │ │ ( ) ARM TrustZone (OP-TEE) │ │       │ │[12:00:02] ML-KEM-768 Decaps ││
-│ │ Protocol: usepqc v1.0 (PQC)│ │       │ └────────────────────────────┘ │       │ │[12:00:02] ML-DSA-65 Verified││
-│ │ Post-Quantum Identity: OK  │ │       │                                │       │ │[12:00:02] TUN 10.192.0.2 up ││
-│ │                            │ │       │ ┌────────────────────────────┐ │       │ │[12:00:03] Session keys wipe ││
-│ │    [  DISCONNECT VPN  ]    │ │       │ │ Identity Key Fingerprint   │ │       │ │[12:00:15] Intercept DNS: 53 ││
-│ └────────────────────────────┘ │       │ │ ML-DSA-65 (NIST FIPS 204)  │ │       │ │[12:00:15] Redirect->10.192..││
-│                                │       │ │ SHA256: 3a9f...b271 (Pinned)││       │ │[12:00:20] Drop raw UDP:8080 ││
-│ ┌────────────────────────────┐ │       │ └────────────────────────────┘ │       │ └────────────────────────────┘ │
-│ │ 🛡️ Key Protection: Active  │ │       │                                │       │                                │
-│ │ Backend: StrongBox TEE     │ │       │ ┌────────────────────────────┐ │       │ [  EXPORT AUDIT LOG (JSON)  ]  │
-│ │ 96-Byte Seed Sealed in ROM │ │       │ │ Monotonic Policy Rollback  │ │       │                                │
-│ └────────────────────────────┘ │       │ │ Stored Counter: #5         │ │       │ Clear Logs       Auto-Scroll   │
-│                                │       │ │ Anti-Downgrade: ENFORCED   │ │       │                                │
-│ ┌────────────────────────────┐ │       │ └────────────────────────────┘ │       │                                │
-│ │ 🧅 Tor Onion Transport     │ │       │                                │       │                                │
-│ │ Circuit: 3-Hop v3 Encrypted│ │       │ [ RE-PROVISION IDENTITY KEY ]  │       │                                │
-│ └────────────────────────────┘ │       │                                │       │                                │
-│                                │       │                                │       │                                │
-│   [Dashboard]  [Keys]  [Logs]  │       │   [Dashboard]  [Keys]  [Logs]  │       │   [Dashboard]  [Keys]  [Logs]  │
-└────────────────────────────────┘       └────────────────────────────────┘       └────────────────────────────────┘
-```
 
 ---
 
