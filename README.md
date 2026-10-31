@@ -7,6 +7,10 @@
 [![OP-TEE](https://img.shields.io/badge/Hardware-ARM%20TrustZone%20%2F%20OP--TEE-red.svg)](https://www.op-tee.org/)
 [![Android](https://img.shields.io/badge/Platform-Android%2014%2B%20(StrongBox)-success.svg)](https://developer.android.com)
 
+<p align="center">
+  <img src="docs/images/pqveil_mobile_ui_mockup.png" alt="PQVeil Mobile UI Screen Suite" width="100%">
+</p>
+
 ---
 
 ## 1. Project Ideology & Philosophy
@@ -112,10 +116,10 @@ The PQVeil Mobile user interface is engineered in **Kotlin with Jetpack Compose*
 ### Visual Screen Layouts
 
 <p align="center">
-  <img src="docs/images/pqveil_mobile_ui_mockup.svg" alt="PQVeil Mobile UI Screen Suite: Dashboard, Security Settings, and Event Monitor" width="100%">
+  <img src="docs/images/pqveil_mobile_ui_mockup.png" alt="PQVeil Mobile UI Screen Suite: Dashboard, Security Settings, and Event Monitor" width="100%">
 </p>
 
-> *The three primary interfaces of PQVeil Mobile: (1) Main Dashboard with one-tap connection and hardware status; (2) Security & Hardware Isolation settings with seed-based enclave controls; (3) Live Real-Time Audit Telemetry terminal showing zero-leak fail-closed protection. (Also available as high-resolution [PNG preview](docs/images/pqveil_mobile_ui_mockup.png)).*
+> *The three primary interfaces of PQVeil Mobile: (1) Main Dashboard with one-tap connection and hardware status; (2) Security & Hardware Isolation settings with seed-based enclave controls; (3) Live Real-Time Audit Telemetry terminal showing zero-leak fail-closed protection. (Also available as scalable vector [SVG format](docs/images/pqveil_mobile_ui_mockup.svg)).*
 
 ```
    SCREEN 1: MAIN DASHBOARD                 SCREEN 2: SECURITY SETTINGS             SCREEN 3: LIVE EVENT MONITOR
