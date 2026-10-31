@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="canvasGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+
+    <!-- Phone Bezel Gradient -->
+    <linearGradient id="phoneBezel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="50%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="connectedCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="100%" stop-color="#022C22"/>
+    </linearGradient>
+
+    <linearGradient id="cardDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+
+    <linearGradient id="btnBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+
+    <linearGradient id="btnRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="100%" stop-color="#B91C1C"/>
+    </linearGradient>
+
+    <!-- Glow & Shadow Filters -->
+    <filter id="phoneShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <filter id="emeraldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="760" fill="url(#canvasGrad)"/>
+
+  <!-- Canvas Grid Accent -->
+  <g stroke="#1E293B" stroke-width="1" opacity="0.4">
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="640" x2="1200" y2="640"/>
+  </g>
+
+  <!-- Header Banner -->
+  <text x="600" y="45" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800" fill="#F8FAFC" letter-spacing="1">PQVEIL MOBILE — ANDROID UI SUITE</text>
+  <text x="600" y="70" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" fill="#94A3B8">Post-Quantum Authenticated Tunnel over Tor v3 with Hardware-Isolated Key Protection</text>
+
+  <!-- ============================================================== -->
+  <!-- PHONE 1: MAIN DASHBOARD                                        -->
+  <!-- ============================================================== -->
+  <g transform="translate(60, 95)" filter="url(#phoneShadow)">
+    <!-- Outer Bezel -->
+    <rect width="320" height="620" rx="36" fill="url(#phoneBezel)" stroke="#475569" stroke-width="3"/>
+    <!-- Screen Glass -->
+    <rect x="10" y="10" width="300" height="600" rx="28" fill="#0F172A"/>
+
+    <!-- Dynamic Island / Speaker Notch -->
+    <rect x="105" y="18" width="90" height="14" rx="7" fill="#020617"/>
+    <circle cx="175" cy="25" r="3" fill="#1E293B"/>
+
+    <!-- Status Bar -->
+    <text x="28" y="29" font-family="sans-serif" font-size="11" font-weight="700" fill="#94A3B8">12:00</text>
+    <text x="272" y="29" font-family="sans-serif" font-size="11" font-weight="700" fill="#34D399" text-anchor="end">🛡️ 95%</text>
+
+    <!-- App Title -->
+    <text x="150" y="65" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="800" fill="#F8FAFC">PQVeil Mobile</text>
+    <text x="150" y="82" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Post-Quantum Tunnel &amp; Onion Egress</text>
+
+    <!-- Connection Status Card (Connected) -->
+    <rect x="22" y="105" width="256" height="175" rx="16" fill="url(#connectedCard)" stroke="#059669" stroke-width="1.5"/>
+    
+    <!-- Status Indicator Pill -->
+    <circle cx="95" cy="135" r="6" fill="#10B981" filter="url(#emeraldGlow)"/>
+    <text x="110" y="140" font-family="sans-serif" font-size="15" font-weight="800" fill="#34D399">CONNECTED</text>
+    <text x="150" y="160" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#A7F3D0">PQC Tunnel Active · ML-DSA-65 Valid</text>
+    
+    <!-- Gateway Target -->
+    <rect x="36" y="174" width="228" height="26" rx="6" fill="#022C22" stroke="#065F46" stroke-width="1"/>
+    <text x="150" y="191" text-anchor="middle" font-family="monospace" font-size="10" fill="#6EE7B7">pqveil....v3.onion:4433</text>
+
+    <!-- Action Button (Disconnect) -->
+    <rect x="42" y="215" width="216" height="42" rx="10" fill="url(#btnRed)"/>
+    <text x="150" y="241" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">DISCONNECT VPN</text>
+
+    <!-- Hardware Backend Card -->
+    <rect x="22" y="295" width="256" height="85" rx="14" fill="url(#cardDark)" stroke="#334155" stroke-width="1"/>
+    <text x="36" y="318" font-family="sans-serif" font-size="12" font-weight="700" fill="#38BDF8">🛡️ Hardware Key Backend</text>
+    <text x="36" y="338" font-family="sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">StrongBox TEE (Isolated Enclave)</text>
+    <text x="36" y="356" font-family="sans-serif" font-size="10" fill="#94A3B8">PQC Storage: 96-Byte Seed in ROM</text>
+    <text x="36" y="370" font-family="sans-serif" font-size="10" fill="#10B981">Footprint Saved: 99.06%</text>
+
+    <!-- Tor Onion Transport Card -->
+    <rect x="22" y="392" width="256" height="75" rx="14" fill="url(#cardDark)" stroke="#334155" stroke-width="1"/>
+    <text x="36" y="415" font-family="sans-serif" font-size="12" font-weight="700" fill="#F59E0B">🧅 Tor Onion Transport</text>
+    <text x="36" y="435" font-family="sans-serif" font-size="11" fill="#E2E8F0">Circuit: Guard ➔ Middle ➔ Onion</text>
+    <text x="36" y="452" font-family="sans-serif" font-size="10" fill="#94A3B8">TUN Address: 10.192.0.2 · MTU: 1500</text>
+
+    <!-- Fail-Closed Firewall Badge -->
+    <rect x="22" y="480" width="256" height="48" rx="12" fill="#1E293B" stroke="#475569" stroke-width="1"/>
+    <text x="36" y="501" font-family="sans-serif" font-size="11" font-weight="700" fill="#F8FAFC">🔒 Fail-Closed Firewall Active</text>
+    <text x="36" y="516" font-family="sans-serif" font-size="10" fill="#EF4444">Non-DNS UDP &amp; IPv6 Dropped (0 Leaks)</text>
+
+    <!-- Bottom Navigation Bar -->
+    <rect x="10" y="545" width="300" height="55" fill="#020617"/>
+    <line x1="10" y1="545" x2="310" y2="545" stroke="#1E293B" stroke-width="1"/>
+    <text x="60" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#38BDF8">Dashboard</text>
+    <text x="150" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Security</text>
+    <text x="240" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Telemetry</text>
+  </g>
+
+  <!-- ============================================================== -->
+  <!-- PHONE 2: SECURITY & KEY SETTINGS                               -->
+  <!-- ============================================================== -->
+  <g transform="translate(440, 95)" filter="url(#phoneShadow)">
+    <rect width="320" height="620" rx="36" fill="url(#phoneBezel)" stroke="#475569" stroke-width="3"/>
+    <rect x="10" y="10" width="300" height="600" rx="28" fill="#0F172A"/>
+
+    <rect x="105" y="18" width="90" height="14" rx="7" fill="#020617"/>
+    <circle cx="175" cy="25" r="3" fill="#1E293B"/>
+
+    <text x="28" y="29" font-family="sans-serif" font-size="11" font-weight="700" fill="#94A3B8">12:00</text>
+    <text x="272" y="29" font-family="sans-serif" font-size="11" font-weight="700" fill="#34D399" text-anchor="end">🛡️ 95%</text>
+
+    <text x="150" y="65" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="800" fill="#F8FAFC">Security &amp; Hardware</text>
+    <text x="150" y="82" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Isolated Key Protection Engine</text>
+
+    <!-- Key Backend Selection Card -->
+    <rect x="22" y="105" width="256" height="120" rx="14" fill="url(#cardDark)" stroke="#334155" stroke-width="1"/>
+    <text x="36" y="128" font-family="sans-serif" font-size="12" font-weight="700" fill="#38BDF8">Active Hardware Enclave</text>
+    
+    <!-- Option A: StrongBox -->
+    <circle cx="44" cy="155" r="7" fill="#0284C7" stroke="#38BDF8" stroke-width="2"/>
+    <circle cx="44" cy="155" r="3" fill="#FFFFFF"/>
+    <text x="60" y="159" font-family="sans-serif" font-size="11" font-weight="600" fill="#F8FAFC">Android StrongBox TEE</text>
+    <text x="60" y="172" font-family="sans-serif" font-size="9" fill="#94A3B8">AES-256-GCM Envelope Encryption</text>
+
+    <!-- Option B: OP-TEE -->
+    <circle cx="44" cy="195" r="7" fill="none" stroke="#64748B" stroke-width="2"/>
+    <text x="60" y="199" font-family="sans-serif" font-size="11" fill="#CBD5E1">ARM TrustZone (OP-TEE TA)</text>
+    <text x="60" y="212" font-family="sans-serif" font-size="9" fill="#64748B">UUID: b3a4e5f6... Zero Host Exposure</text>
+
+    <!-- Identity Fingerprint Card -->
+    <rect x="22" y="238" width="256" height="90" rx="14" fill="url(#cardDark)" stroke="#334155" stroke-width="1"/>
+    <text x="36" y="261" font-family="sans-serif" font-size="12" font-weight="700" fill="#A855F7">Identity Key (ML-DSA-65)</text>
+    <text x="36" y="278" font-family="sans-serif" font-size="10" fill="#94A3B8">Algorithm: NIST FIPS 204 Standard</text>
+    <rect x="34" y="286" width="232" height="26" rx="6" fill="#020617"/>
+    <text x="44" y="303" font-family="monospace" font-size="9" fill="#D8B4FE">SHA256: 3a9f...b271 (Pinned)</text>
+
+    <!-- Anti-Rollback Counter Card -->
+    <rect x="22" y="340" width="256" height="85" rx="14" fill="url(#cardDark)" stroke="#334155" stroke-width="1"/>
+    <text x="36" y="363" font-family="sans-serif" font-size="12" font-weight="700" fill="#10B981">Monotonic Policy Enforcer</text>
+    <text x="36" y="383" font-family="sans-serif" font-size="11" fill="#F8FAFC">Hardware Counter State: #5</text>
+    <text x="36" y="401" font-family="sans-serif" font-size="10" fill="#34D399">Downgrade Attacks: REJECTED</text>
+    <text x="36" y="414" font-family="sans-serif" font-size="9" fill="#64748B">Stale policies permanently blocked</text>
+
+    <!-- Re-Provision Button -->
+    <rect x="36" y="445" width="228" height="40" rx="10" fill="url(#btnBlue)"/>
+    <text x="150" y="470" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">PROVISION NEW SEED</text>
+
+    <text x="150" y="515" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#64748B">Generates fresh 32B seed inside Enclave</text>
+
+    <!-- Bottom Navigation Bar -->
+    <rect x="10" y="545" width="300" height="55" fill="#020617"/>
+    <line x1="10" y1="545" x2="310" y2="545" stroke="#1E293B" stroke-width="1"/>
+    <text x="60" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Dashboard</text>
+    <text x="150" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#38BDF8">Security</text>
+    <text x="240" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Telemetry</text>
+  </g>
+
+  <!-- ============================================================== -->
+  <!-- PHONE 3: LIVE EVENT MONITOR                                    -->
+  <!-- ============================================================== -->
+  <g transform="translate(820, 95)" filter="url(#phoneShadow)">
+    <rect width="320" height="620" rx="36" fill="url(#phoneBezel)" stroke="#475569" stroke-width="3"/>
+    <rect x="10" y="10" width="300" height="600" rx="28" fill="#0F172A"/>
+
+    <rect x="105" y="18" width="90" height="14" rx="7" fill="#020617"/>
+    <circle cx="175" cy="25" r="3" fill="#1E293B"/>
+
+    <text x="28" y="29" font-family="sans-serif" font-size="11" font-weight="700" fill="#94A3B8">12:00</text>
+    <text x="272" y="29" font-family="sans-serif" font-size="11" font-weight="700" fill="#34D399" text-anchor="end">🛡️ 95%</text>
+
+    <text x="150" y="65" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="800" fill="#F8FAFC">Event Telemetry</text>
+    <text x="150" y="82" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Real-Time Zero-Leak Audit Log</text>
+
+    <!-- Terminal Screen Box -->
+    <rect x="18" y="102" width="264" height="375" rx="12" fill="#020617" stroke="#1E293B" stroke-width="1.5"/>
+    
+    <!-- Terminal Header Dots -->
+    <circle cx="34" cy="118" r="4" fill="#EF4444"/>
+    <circle cx="48" cy="118" r="4" fill="#F59E0B"/>
+    <circle cx="62" cy="118" r="4" fill="#10B981"/>
+    <text x="150" y="122" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748B">audit_daemon.log</text>
+
+    <!-- Monospace Terminal Log Lines -->
+    <g font-family="monospace" font-size="9.5">
+      <text x="26" y="145" fill="#38BDF8">[12:00:01] Tor bootstrap 100%</text>
+      <text x="26" y="162" fill="#94A3B8">[12:00:01] Circuit: Guard-&gt;Mid-&gt;Exit</text>
+      <text x="26" y="179" fill="#A3E635">[12:00:02] ClientHello sent (1218 B)</text>
+      <text x="26" y="196" fill="#A3E635">[12:00:02] ML-KEM-768 Decaps: OK</text>
+      <text x="26" y="213" fill="#A3E635">[12:00:02] ML-DSA-65 Peer Verified</text>
+      <text x="26" y="230" fill="#34D399">[12:00:02] Session ESTABLISHED (73µs)</text>
+      
+      <!-- Yellow Warning / Security Action -->
+      <text x="26" y="255" fill="#FBBF24">[12:00:03] Ephemeral keys ZEROIZED</text>
+      <text x="26" y="272" fill="#94A3B8">[12:00:03] TUN 10.192.0.2 up (MTU 1500)</text>
+      <text x="26" y="289" fill="#60A5FA">[12:00:15] Intercept DNS :53 query</text>
+      <text x="26" y="306" fill="#60A5FA">[12:00:15] Redirect -&gt; 10.192.0.1:5353</text>
+      
+      <!-- Red Shield / Leak Blocked -->
+      <text x="26" y="331" fill="#F87171">[12:00:20] BLOCK UDP :8080 (Drop)</text>
+      <text x="26" y="348" fill="#F87171">[12:00:22] BLOCK QUIC :443 (Drop)</text>
+      <text x="26" y="365" fill="#F87171">[12:00:24] BLOCK IPv6 probe (Drop)</text>
+      
+      <text x="26" y="390" fill="#34D399">[12:00:28] Zero network leaks: PASS</text>
+      <text x="26" y="407" fill="#64748B">[12:00:30] ChaCha20-Poly1305 396MB/s</text>
+      <text x="26" y="424" fill="#38BDF8">[12:00:35] Keepalive seq=124 OK</text>
+      <text x="26" y="441" fill="#A3E635">[12:00:40] Tunnel active (Fail-Closed)</text>
+      <text x="26" y="460" fill="#22C55E">_</text>
+    </g>
+
+    <!-- Export Button -->
+    <rect x="36" y="490" width="228" height="38" rx="8" fill="#1E293B" stroke="#475569" stroke-width="1"/>
+    <text x="150" y="514" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="600" fill="#E2E8F0">EXPORT AUDIT LOG (JSON)</text>
+
+    <!-- Bottom Navigation Bar -->
+    <rect x="10" y="545" width="300" height="55" fill="#020617"/>
+    <line x1="10" y1="545" x2="310" y2="545" stroke="#1E293B" stroke-width="1"/>
+    <text x="60" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Dashboard</text>
+    <text x="150" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#64748B">Security</text>
+    <text x="240" y="578" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#38BDF8">Telemetry</text>
+  </g>
+</svg>

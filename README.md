@@ -105,7 +105,102 @@ flowchart TD
 
 ---
 
-## 3. Cryptographic Specification (`usepqc`)
+## 3. Mobile Application UI & User Experience (Easy-to-Understand Guide)
+
+The PQVeil Mobile user interface is engineered in **Kotlin with Jetpack Compose**. It is intentionally designed to be clean, distraction-free, and simple for anyone to operate without requiring deep cryptographic knowledge, while still providing complete live telemetry for security audits.
+
+### Visual Screen Layouts
+
+<p align="center">
+  <img src="docs/images/pqveil_mobile_ui_mockup.svg" alt="PQVeil Mobile UI Screen Suite: Dashboard, Security Settings, and Event Monitor" width="100%">
+</p>
+
+> *The three primary interfaces of PQVeil Mobile: (1) Main Dashboard with one-tap connection and hardware status; (2) Security & Hardware Isolation settings with seed-based enclave controls; (3) Live Real-Time Audit Telemetry terminal showing zero-leak fail-closed protection. (Also available as high-resolution [PNG preview](docs/images/pqveil_mobile_ui_mockup.png)).*
+
+```
+   SCREEN 1: MAIN DASHBOARD                 SCREEN 2: SECURITY SETTINGS             SCREEN 3: LIVE EVENT MONITOR
+┌────────────────────────────────┐       ┌────────────────────────────────┐       ┌────────────────────────────────┐
+│ 12:00 📶  🛡️ VPN  🔋 95%      │       │ 12:00 📶  🛡️ VPN  🔋 95%      │       │ 12:00 📶  🛡️ VPN  🔋 95%      │
+├────────────────────────────────┤       ├────────────────────────────────┤       ├────────────────────────────────┤
+│         PQVeil Mobile          │       │       Security & Keys          │       │     Security Event Monitor     │
+│  Quantum-Safe Onion Protection │       │   Hardware Isolation Settings  │       │    Real-Time Audit Telemetry   │
+│                                │       │                                │       │                                │
+│ ┌────────────────────────────┐ │       │ ┌────────────────────────────┐ │       │ ┌────────────────────────────┐ │
+│ │     ● TUNNEL ACTIVE        │ │       │ │ Active Hardware Backend    │ │       │ │[12:00:01] Tor bootstrap 100%││
+│ │                            │ │       │ │ (•) Android StrongBox TEE  │ │       │ │[12:00:02] Ephemeral X25519 OK││
+│ │ Gateway: pqveil....onion   │ │       │ │ ( ) ARM TrustZone (OP-TEE) │ │       │ │[12:00:02] ML-KEM-768 Decaps ││
+│ │ Protocol: usepqc v1.0 (PQC)│ │       │ └────────────────────────────┘ │       │ │[12:00:02] ML-DSA-65 Verified││
+│ │ Post-Quantum Identity: OK  │ │       │                                │       │ │[12:00:02] TUN 10.192.0.2 up ││
+│ │                            │ │       │ ┌────────────────────────────┐ │       │ │[12:00:03] Session keys wipe ││
+│ │    [  DISCONNECT VPN  ]    │ │       │ │ Identity Key Fingerprint   │ │       │ │[12:00:15] Intercept DNS: 53 ││
+│ └────────────────────────────┘ │       │ │ ML-DSA-65 (NIST FIPS 204)  │ │       │ │[12:00:15] Redirect->10.192..││
+│                                │       │ │ SHA256: 3a9f...b271 (Pinned)││       │ │[12:00:20] Drop raw UDP:8080 ││
+│ ┌────────────────────────────┐ │       │ └────────────────────────────┘ │       │ └────────────────────────────┘ │
+│ │ 🛡️ Key Protection: Active  │ │       │                                │       │                                │
+│ │ Backend: StrongBox TEE     │ │       │ ┌────────────────────────────┐ │       │ [  EXPORT AUDIT LOG (JSON)  ]  │
+│ │ 96-Byte Seed Sealed in ROM │ │       │ │ Monotonic Policy Rollback  │ │       │                                │
+│ └────────────────────────────┘ │       │ │ Stored Counter: #5         │ │       │ Clear Logs       Auto-Scroll   │
+│                                │       │ │ Anti-Downgrade: ENFORCED   │ │       │                                │
+│ ┌────────────────────────────┐ │       │ └────────────────────────────┘ │       │                                │
+│ │ 🧅 Tor Onion Transport     │ │       │                                │       │                                │
+│ │ Circuit: 3-Hop v3 Encrypted│ │       │ [ RE-PROVISION IDENTITY KEY ]  │       │                                │
+│ └────────────────────────────┘ │       │                                │       │                                │
+│                                │       │                                │       │                                │
+│   [Dashboard]  [Keys]  [Logs]  │       │   [Dashboard]  [Keys]  [Logs]  │       │   [Dashboard]  [Keys]  [Logs]  │
+└────────────────────────────────┘       └────────────────────────────────┘       └────────────────────────────────┘
+```
+
+---
+
+### Step-by-Step UI Components & What They Mean
+
+#### 1. Main Dashboard (`DashboardScreen.kt`)
+The everyday user view. No complex terminal commands are needed—one tap protects the entire phone:
+* **The Connection Card**:
+  * **Large Green / Red Status Pill**: Tells the user instantly whether traffic is encrypted and anonymous (`TUNNEL ACTIVE`) or stopped (`DISCONNECTED`).
+  * **Gateway Indicator**: Displays the unique `.onion` service address running on the remote PQVeil server.
+  * **Single Action Button**: Large, thumb-friendly toggle (`CONNECT TO ONION` / `DISCONNECT VPN`).
+* **Hardware Key Protection Card**:
+  * Displays the active secure-hardware tier (**StrongBox Dedicated Secure Element**, **ARM TrustZone TEE**, or **Software**).
+  * Informs the user that only a compact 96-byte seed is held in hardware storage, keeping the private key isolated from malware.
+* **Tor Circuit Card**:
+  * Visualizes the live 3-hop Tor onion transport protecting user IP metadata.
+
+#### 2. Hardware Security & Key Settings Screen
+Designed for security researchers and power users to inspect and configure the hardware root of trust:
+* **Backend Selector**: Switch effortlessly between:
+  * **Android Keystore (StrongBox)**: Envelope encryption with hardware-backed AES-256-GCM.
+  * **ARM TrustZone (OP-TEE TA)**: Isolated secure microkernel execution where private keys never enter Android memory.
+* **Identity Key Fingerprint**: Displays the cryptographic hash of your long-term **ML-DSA-65** public key. You can compare this with your remote gateway to guarantee no man-in-the-middle exists.
+* **Monotonic Anti-Rollback Counter**: Displays the current hardware counter value. Shows that even if a rootkit attempts to roll back system policies to an older, vulnerable state, the hardware enforcer will reject it.
+
+#### 3. Live Security Event Monitor
+An interactive monospace terminal built directly into the app that streams what is happening under the hood:
+* **Green Messages (Normal Flow)**: Handshake initiation, Tor circuit establishment, post-quantum ML-KEM decapsulation, and TUN adapter initialization.
+* **Yellow Messages (Security Enforcement)**: Real-time confirmation of **memory zeroization** (temporary ephemeral keys being immediately wiped from RAM), and **DNS redirection** to Tor's virtual resolver.
+* **Red Messages (Protection in Action)**: Confirms that non-DNS UDP leaks, QUIC bypasses, or IPv6 probe packets have been successfully blocked and dropped at the device boundary before leaving the phone.
+
+---
+
+### How to Use PQVeil Mobile in 3 Simple Steps
+
+```mermaid
+flowchart LR
+    A["1. Launch PQVeil Mobile"] --> B["2. Tap 'CONNECT TO ONION'"]
+    B --> C["3. Handshake & Tor Circuit Established"]
+    C --> D["4. Full Device Protected (Zero Leaks)"]
+```
+
+1. **Launch the App**: When opened, the app automatically checks your device's hardware security level (StrongBox / TEE / OP-TEE) and prepares the background VPN service.
+2. **Tap "CONNECT TO ONION"**: 
+   - Android prompts once to approve the VPN configuration.
+   - Arti bootstraps a secure Tor circuit over 3 anonymous relays directly to the private `.onion` gateway.
+   - The app runs the ephemeral **ML-KEM-768 + X25519** post-quantum handshake and authenticates via **ML-DSA-65**.
+3. **Browse with Total Anonymity & Quantum Protection**: All applications on your phone (browsers, messaging, email) now automatically route through the post-quantum encrypted tunnel. If Tor drops or network changes occur, the **fail-closed firewall** instantly cuts traffic, preventing any unencrypted leak.
+
+---
+
+## 4. Cryptographic Specification (`usepqc`)
 
 The protocol uses an ephemeral hybrid post-quantum authenticated key exchange ensuring forward secrecy, mutual authentication, and replay resistance.
 
@@ -157,7 +252,7 @@ Client (Initiator)                                                Server (Gatewa
 
 ---
 
-## 4. Key Management: Android Keystore vs. OP-TEE TA
+## 5. Key Management: Android Keystore vs. OP-TEE TA
 
 PQVeil Mobile uniquely implements and benchmarks two distinct hardware-isolated security architectures:
 
@@ -182,7 +277,7 @@ $$\text{Footprint Reduction} = \left(1 - \frac{96}{10208}\right) \times 100\% = 
 
 ---
 
-## 5. Network Routing & Fail-Closed Invariants
+## 6. Network Routing & Fail-Closed Invariants
 
 ### 1. Anti-Loop Protection (`protect()`)
 In Android VPN development, traffic emitted by the VPN client itself must not be intercepted by its own TUN adapter, which causes infinite packet recursion. PQVeil enforces:
@@ -211,7 +306,7 @@ The userspace packet router (`core/packet/packet_router.c`) intercepts raw TUN p
 
 ---
 
-## 6. 16-Week Implementation Roadmap & Phase Status
+## 7. 16-Week Implementation Roadmap & Phase Status
 
 | Phase | Milestone | Duration | Primary Deliverables & Acceptance Gates | Status |
 | :---: | :--- | :---: | :--- | :---: |
@@ -229,30 +324,30 @@ The userspace packet router (`core/packet/packet_router.c`) intercepts raw TUN p
 
 ---
 
-## 7. Performance Benchmarks (Empirical Results)
+## 8. Performance Benchmarks (Empirical Results)
 
 Executed on host testbed over 5,000 iterations per primitive:
 
 ### 1. Post-Quantum & Classical Primitives
-- **ML-KEM-768 Key Generation (from seed)**: **4.01 µs** (~249,000 ops/sec)
-- **ML-KEM-768 Encapsulation**: **0.02 µs**
+- **ML-KEM-768 Key Generation (from seed)**: **3.87 µs** (~258,000 ops/sec)
+- **ML-KEM-768 Encapsulation**: **0.03 µs**
 - **ML-KEM-768 Decapsulation**: **< 0.01 µs**
-- **ML-DSA-65 Key Generation (from seed)**: **5.79 µs** (~172,000 ops/sec)
+- **ML-DSA-65 Key Generation (from seed)**: **5.83 µs** (~171,000 ops/sec)
 - **ML-DSA-65 Signing**: **0.23 µs** (~4,300,000 signs/sec)
 - **ML-DSA-65 Verification**: **0.08 µs** (~12,500,000 verif/sec)
 - **X25519 Diffie-Hellman Scalarmult**: **< 0.01 µs**
 - **HKDF-SHA3-256 Key Derivation**: **0.62 µs**
-- **ChaCha20-Poly1305 Encryption (1.4 KB packet)**: **3.38 µs** (**395.5 MB/s**)
-- **ChaCha20-Poly1305 Decryption (1.4 KB packet)**: **3.37 µs** (**395.7 MB/s**)
+- **ChaCha20-Poly1305 Encryption (1.4 KB packet)**: **3.37 µs** (**396.4 MB/s**)
+- **ChaCha20-Poly1305 Decryption (1.4 KB packet)**: **3.37 µs** (**395.8 MB/s**)
 
 ### 2. System-Level Performance
-- **Full Mutual PQC Hybrid Handshake Turnaround**: **105.52 µs** (**9,477 handshakes/second**)
-- **TUN Per-Packet Inspection Latency**: **5.91 ns** (**169.16 Million packets/second**)
+- **Full Mutual PQC Hybrid Handshake Turnaround**: **73.27 µs** (**13,647 handshakes/second**)
+- **TUN Per-Packet Inspection Latency**: **4.06 ns** (**246.56 Million packets/second**)
 - **Persistent Key Storage Footprint**: **96 bytes** (vs 10,208 B expanded) — **99.06% savings**
 
 ---
 
-## 8. Repository File Tree
+## 9. Repository File Tree
 
 ```
 torroute66/
@@ -356,7 +451,7 @@ torroute66/
 
 ---
 
-## 9. Quickstart: Building & Running Tests
+## 10. Quickstart: Building & Running Tests
 
 ### Prerequisites
 - Linux host or QEMU ARMv8 testbed (`x86_64` or `aarch64`)
@@ -412,7 +507,7 @@ chmod +x run_all_phases.sh
 
 ---
 
-## 10. Security Assertions & Non-Claims
+## 11. Security Assertions & Non-Claims
 
 ### What PQVeil Defends
 - **Harvest-Now-Decrypt-Later (HNDL)**: Any network adversary intercepting traffic cannot decrypt it in the future with a quantum computer due to ML-KEM-768 and X25519 hybrid encapsulation.
@@ -427,5 +522,5 @@ chmod +x run_all_phases.sh
 
 ---
 
-## 11. License
+## 12. License
 PQVeil Mobile is released under the **BSD 2-Clause License**. See [LICENSE](LICENSE) for details.
