@@ -1,0 +1,17 @@
+# PQVeil-TEE Tor Configuration
+# System-wide transparent proxy, DNS, and control port settings
+
+SocksPort 9050 IsolateSOCKSAuth
+TransPort 9040
+DNSPort 5353
+AutomapHostsOnResolve 1
+VirtualAddrNetworkIPv4 10.192.0.0/10
+ControlPort 9051
+CookieAuthentication 1
+
+DataDirectory /var/lib/tor
+PidFile /run/tor/tor.pid
+Log notice syslog
+ClientOnly 1
+SafeLogging 1
+
